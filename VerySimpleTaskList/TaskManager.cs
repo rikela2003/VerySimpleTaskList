@@ -121,8 +121,33 @@ namespace VerySimpleTaskList
             Console.WriteLine("What is your next task?");
 
             string description = GetStringFromUser();
-            Task newTask = new Task(description);
-            _tasks.Add(newTask);
+
+            Console.WriteLine("Would you like to add a reminder, Yes or No?");
+            string userresponse = GetStringFromUser();
+
+            if (userresponse == "Yes")
+            {
+                Console.WriteLine("In how may hours should I remind you?");
+                string answer = GetStringFromUser();
+                int numberofHours = int.Parse(answer);
+                //int numberofHours = int.Parse(GetStringFromUser());
+
+                ReminderTask newTask = new ReminderTask(description, numberofHours);
+                _tasks.Add(newTask);
+
+            }
+
+            else
+            {
+                Task newTask = new Task(description);
+                _tasks.Add(newTask);
+
+            }
+
+
+
+
+
         }
 
         private string GetStringFromUser()
@@ -151,7 +176,7 @@ namespace VerySimpleTaskList
 
                 else Console.WriteLine("Sorry, that index is invalid.");
             }
-            
+
         }
 
         private void ShowMenu()
